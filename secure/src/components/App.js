@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navigation from './Navigation';
@@ -7,6 +8,10 @@ import Contact from './Contact';
 import About from './About';
 import data from '../data/data.json';
 import './App.css';
+
+const createMarkup = () => {
+  return {__html: 'I am so dangerous you can feel it!' }
+}
 
 class App extends Component {
   constructor(props) {
@@ -37,7 +42,9 @@ class App extends Component {
             )} />
           </Switch>
           <div className="footer">
-                <p>&copy; {this.state.name} Inc.</p>
+            <p>&copy; {this.state.name} Inc.</p>
+            <div innerHTML={createMarkup()}/>
+            <div dangerouslySetInnerHTML={createMarkup()}/>
           </div>
         </div>
       </Router>
