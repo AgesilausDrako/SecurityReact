@@ -36,6 +36,14 @@ export default class Auth {
     });
   }
 
+  getAccessToken() {
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      return new Error('No access token found');
+    }
+    return accessToken;
+  }
+
   setSession(authResult) {
     // Set the time that the access token will expire at
     let expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
